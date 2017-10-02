@@ -1,3 +1,4 @@
+<?php include('server.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
 
     <!-- Custom styles for this templates -->
     <link href="css/small-business.css" rel="stylesheet">
@@ -69,16 +72,30 @@
 
         </div>
 
-        <!-- Popover -->
-        <a href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Login" data-content='<form>
-                            <div class="form-group">           
-                            <input type="email" class="form-control" placeholder="Enter email" maxlength="40" id="emailborder" size="25" style="margin-bottom: 10px;"/>
-                            <input type="password" class="form-control" placeholder="Password" maxlength="12" id="passborder" size="25" style="margin-bottom: 10px;"/>
-                            <button type="button" class="btn btn-success btn-xs" id="loginpopbtn"><a href="login.php">Log In</a></button>
-                            <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
-            <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
-        </a>
-    </nav>
+
+
+        <?php if (isset($_SESSION['success'])): ?>
+            <!-- Popover for success log in -->
+            <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Welcome" data-content='<p id="signup"><a href="index.php?logout="1"""><em>Log out</em></a></p>'>
+        <!-- what to do next when user success log in edit using datacontent -->
+            <?php
+             unset($_SESSION['success']);
+            ?>
+            </data-container>
+
+        <?php else: ?>
+            <!-- Popover for havent login-->
+            <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Login" data-content='<form>
+                                <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Enter email" maxlength="40" id="emailborder" size="25" style="margin-bottom: 10px;"/>
+                                <input type="password" class="form-control" placeholder="Password" maxlength="12" id="passborder" size="25" style="margin-bottom: 10px;"/>
+                                <button type="button" class="btn btn-success btn-xs" id="loginpopbtn"><a href="login.php">Log In</a></button>
+                                <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
+                </data-container>
+        <?php endif; ?>
+
+    <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
+ </nav>
 
     <!-- Page Content -->
     <div class="container">
