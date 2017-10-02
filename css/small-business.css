@@ -1,0 +1,72 @@
+/* ==== Google font ==== */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700,900);
+@import url('https://fonts.googleapis.com/css?family=Ek+Mukta:400,600,700');
+
+body {
+    padding-top: 54px;
+    font-family: 'Ek Mukta', sans-serif;
+    font-weight: 300;
+    color: #666;
+    background-color: #fff;
+	font-size: 16px;
+    line-height: 1.6em;
+	font-weight: 400;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+    }
+}
+
+.navbar-nav > li {
+    padding-right: 60px;
+    text-align: center;
+}
+
+#login {
+    float: right;
+    max-width: 100%;
+}
+
+#signup {
+    float: right;
+    padding-top: 15px;
+    color: #43A047;
+}
+
+#loginpopbtn > a {
+    text-decoration: none;
+    color: white;
+}
+
+#signup > a {
+    text-decoration: none;
+}
+
+
+/*style social media icons in the footer*/
+.social {
+    width: 20%;
+    margin: auto;
+}
+
+.social img {
+    margin: auto;
+}
+
+#twitter {
+    width: 40px;
+}
+
+#facebook {
+    width: 40px;
+}
+
+#email {
+    width: 40px;
+}
+
+#instagram {
+    width: 40px;
+}
