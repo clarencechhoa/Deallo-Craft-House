@@ -39,11 +39,11 @@
                     <div class="form-group">
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email address">
                     </div>
-                    <a class="btn btn-primary btn-block" href="login.html">Reset Password</a>
+                    <a class="btn btn-primary btn-block" href="login.php">Reset Password</a>
                 </form>
                 <div class="text-center">
-                    <a class="d-block small mt-3" href="register.html">Register an Account</a>
-                    <a class="d-block small" href="login.html">Login Page</a>
+                    <a class="d-block small mt-3" href="register.php">Register an Account</a>
+                    <a class="d-block small" href="login.php">Login Page</a>
                 </div>
             </div>
         </div>

@@ -10,7 +10,6 @@
 
     <title>Shopping Cart</title>
 
-
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -29,7 +28,7 @@
      <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
-        <a class="navbar-brand" href="index.html">Deallo Craft House Ltd.</a>
+        <a class="navbar-brand" href="index.php">Deallo Craft House Ltd.</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,7 +38,7 @@
                 <span class="">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home
+                            <a class="nav-link" href="index.php">Home
                                 <span class="sr-only">(current)</span>
                 </a>
                 </li>
@@ -76,30 +75,24 @@
                             <input type="email" class="form-control" placeholder="Enter email" maxlength="40" id="emailborder" size="25" style="margin-bottom: 10px;"/>
                             <input type="password" class="form-control" placeholder="Password" maxlength="12" id="passborder" size="25" style="margin-bottom: 10px;"/>
                             <button type="button" class="btn btn-success btn-xs" id="loginpopbtn"><a href="">Log In</a></button>
-                            <p id="signup"><a href="register.html" target="_blank"><em>Sign Up</em></a></p></form>'>
+                            <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
             <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
         </a>
     </nav>
 
         <div class="card text-white bg-secondary my-4 text-center">
             <div class="card-body">
-                <p class="text-white m-0 lead">Product list</p>
+                <p class="text-white m-0 lead">Your Shopping Cart</p>
             </div>
         </div>
      <div class="col-md-16 mb-16">
+        <div class="skirt text-center">
+            <img src="images/skirt.jpg">
+        </div>
 
-         <p id="cpn">teds</p>
-         <p id="cpp">tes</p>
-         <p id="cpd">tes</p>
-<!--
-
-         <table>
-            <tr>
-             <td><span id="name2"></span></td>
-             </tr>
-         </table>
--->
-
+            <div class="add-to-cart text-center">
+                        <a href="cart.php" class="btn btn-primary">Checkout</a>
+            </div>
     </div>
     <footer class="py-5 bg-dark">
         <div class="row social">
@@ -125,7 +118,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
 
 </body>
 

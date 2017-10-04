@@ -10,6 +10,7 @@
 
     <title>Small Business - Start Bootstrap Template</title>
 
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -29,7 +30,7 @@
      <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
-        <a class="navbar-brand" href="index.html">Deallo Craft House Ltd.</a>
+        <a class="navbar-brand" href="index.php">Deallo Craft House Ltd.</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,7 +40,7 @@
                 <span class="">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home
+                            <a class="nav-link" href="index.php">Home
                                 <span class="sr-only">(current)</span>
                 </a>
                 </li>
@@ -76,7 +77,7 @@
                             <input type="email" class="form-control" placeholder="Enter email" maxlength="40" id="emailborder" size="25" style="margin-bottom: 10px;"/>
                             <input type="password" class="form-control" placeholder="Password" maxlength="12" id="passborder" size="25" style="margin-bottom: 10px;"/>
                             <button type="button" class="btn btn-success btn-xs" id="loginpopbtn"><a href="">Log In</a></button>
-                            <p id="signup"><a href="register.html" target="_blank"><em>Sign Up</em></a></p></form>'>
+                            <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
             <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
         </a>
     </nav>
@@ -84,41 +85,49 @@
     <!--Title-->
         <div class="card text-white bg-secondary my-4 text-center">
             <div class="card-body">
-                <p class="text-white m-0 lead">Listing of Clothes</p>
+                <p class="text-white m-0 lead">Upload Your Product</p>
             </div>
         </div>
-     <!--skirt image-->
-     <div class="col-md-16 mb-16">
-        <div class="skirt text-center">
-            <img src="images/skirt.jpg">
-        </div>
 
-           <!--description-->
-         <div class="container">
-            <table class="table table-bordered text-center">
+<form method="post" action="list.php" id="eform" enctype="multipart/form-data">
+  <div class="form-group">
+ <p>Product's Categories</p>
 
-                    <tr>
-                        <td><strong>Name</strong></td>
-                        <td><strong>Price</strong></td>
-                        <td><strong>Description</strong></td>
-                    </tr>
+     <input type="radio" name="productcategories" class="radio-inline" value="Clothes&Accessories">Clothes & Accessories &nbsp
+       <input type="radio" name="productcategories" class="radio-inline" value="Jewellery">Jewellery &nbsp
+      <input type="radio" name="productcategories" class="radio-inline" value="CraftSupplies">Craft Supplies &nbsp
+      <input type="radio" name="productcategories" class="radio-inline" value="Bedding&RoomDecoration">Bedding & Room Decoration &nbsp
+      <input type="radio" name="productcategories" class="radio-inline" value="SoftToy">Soft Toy &nbsp
+    <input type="radio" name="productcategories" class="radio-inline" value="VintageArt">Vintage Art &nbsp
+       <input type="radio" name="productcategories" class="radio-inline" value="WeddingAccessories">Wedding Accessories
+  </div>
+  <div class="form-group">
+    <label for="productprice">Product Price</label>
+    <input type="text" class="form-control" id="productprice" name="productprice" placeholder="Enter your product price">
+
+  </div>
+
+  <div class="form-group">
+    <label for="productdesc">Product Description</label>
+    <input type="text" class="form-control" id="productdesc" name="productdesc" placeholder="Enter your product description">
+
+  </div>
+       <div class="form-group">
+    <label for="productimage">Product image</label>
+    <input type="file" class="form-control-file" id="productimage" name="productimage">
+
+  </div>
+<!--
+  <div class="form-group">
+    <label for="productimage">Image</label>
+    <input type="file" class="form-control-file" aria-describedby="fileHelp" id="productimage">
+
+  </div>
+-->
+    <input type="submit" value="Submit" class="btn btn-primary" id="uploadproduct"/>
+    </form>
 
 
-
-                    <tr>
-                        <td>Skirt</td>
-                        <td>$19.99</td>
-                        <td>Only green colour</td>
-                    </tr>
-
-
-             </table>
-        </div>
-
-            <div class="add-to-cart text-center">
-                        <a href="cart.html" class="btn btn-primary">Add To Cart</a>
-            </div>
-    </div>
     <footer class="py-5 bg-dark">
         <div class="row social">
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -143,6 +152,9 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+
 
 </body>
 
