@@ -15,7 +15,7 @@ $database = "registration";
 $db = new mysqli($servername,$username,$password,$database);
 
 //check connection
-if ($db -> connect_error){
+if ($db->connect_error){
 
     $databaseName = "CREATE DATABASE registration";
     $databaseTable = "CREATE TABLE users (
@@ -27,8 +27,12 @@ if ($db -> connect_error){
         role VARCHAR(255) NOT NULL
     )";
 
-    $db = new mysqli($servername, $username, $password, $databaseName);
+    $db2 = mysqli_connect($servername, $username, $password, $databaseName);
 
+}
+else
+{
+    $db = mysqli_connect($servername,$username,$password,$database);
 }
 
 //if the register button is clicked
