@@ -6,8 +6,30 @@ $f_name = "";
 $l_name = "";
 $errors = array();
 
-//connect to the database
-$db = mysqli_connect('localhost','root','','registration');
+//create connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "registration";
+
+$db = mysqli_connect($servername,$username,$password,$database);
+
+//check connection
+if ($db -> connect_error){
+
+    $databaseName = "CREATE DATABASE registration";
+    $databaseTable = "CREATE TABLE users (
+        userID INT(11) NOT NULL AUTO_INCREMENT
+        f_name VARCHAR(255) NOT NULL,
+        l_name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        role VARCHAR(255) NOT NULL
+    )";
+
+    $db = mysqli_connect($servername, $username, $password, $databaseName);
+
+}
 
 //if the register button is clicked
 if(isset($_POST['register'])){
@@ -17,6 +39,8 @@ if(isset($_POST['register'])){
     $password_1 = mysqli_real_escape_string($db,$_POST['password_1']);
     $password_2 = mysqli_real_escape_string($db,$_POST['password_2']);
     $role = mysqli_real_escape_string($db,$_POST['role']);
+    $query = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($db, $query);
 
     //validation for form
     if (empty($f_name)){
@@ -29,6 +53,9 @@ if(isset($_POST['register'])){
 
     if (empty($email)){
         array_push($errors, "Email is required");
+    }
+    else if (mysqli_num_rows($result) == 1){
+        array_push($errors, "This email has used");
     }
 
     if (empty($password_1)){
