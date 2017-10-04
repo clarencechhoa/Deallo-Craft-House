@@ -213,6 +213,7 @@
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
+<<<<<<< HEAD
         <a class="navbar-brand" href="index.html">Deallo Craft House Ltd.</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -265,6 +266,30 @@
             <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
         </a>
     </nav>
+=======
+        <!-- using php changing interface before log in and after -->
+        <?php if (isset($_SESSION['success'])): ?>
+            <!-- Popover for success log in -->
+            <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Welcome <?php echo $_SESSION['success'];?>"
+                            data-content='<p id="signup"><a href="index.php?logout="1"""><em>Log out</em></a></p>'>
+            </data-container>
+            <?php unset($_SESSION['success']);?>
+
+        <?php else: ?>
+            <!-- Popover for havent login-->
+            <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Login" data-content='<form method="post" action="login.php">
+                                <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Enter email" maxlength="40" id="emailborder" size="25" style="margin-bottom: 10px;" value="<?php if(isset($_COOKIE["saveemail"])) { echo $_COOKIE["saveemail"]; } ?>"/>
+                                <input type="password" name="password" class="form-control" placeholder="Password" maxlength="12" id="passborder" size="25" style="margin-bottom: 10px;" value="<?php if(isset($_COOKIE["savepassword"])) { echo $_COOKIE["savepassword"]; } ?>"/>
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="remember" <?php if(isset($_COOKIE["saveemail"])) {?> checked <?php } ?> >Remember Password</label>
+                                <br><br><button type="submit" class="btn btn-success btn-xs" id="loginpopbtn" name="login">Log In</button>
+                                <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
+                </data-container>
+        <?php endif; ?>
+    <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
+ </nav>
+>>>>>>> origin/master
 
     <!-- Page Content -->
     <div class="container">

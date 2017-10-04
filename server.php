@@ -45,11 +45,11 @@ if(isset($_POST['register'])){
 
     //if there are no errors, save data to database
     if (count($errors) == 0){
-        $password = md5($password_1); //encrypt password before storing in database
+        $password = base64_encode($password_1); //encrypt password before storing in database
 
         $sql = "INSERT INTO users (f_name, l_name, email, password, role) VALUES ('$f_name', '$l_name', '$email', '$password', '$role')";
         mysqli_query($db, $sql);
-        $_SESSION['success'] = "Welcome" . $f_name . $l_name;
+        $_SESSION['success'] = $f_name ." ". $l_name;
         header('location: index.php'); // redirect to homepage
     }
 
@@ -69,14 +69,39 @@ if (isset($_POST['login'])){
     }
 
     if (count($errors) == 0){
-        $password = md5($password); // encrypt password before comparing with database
+        //validate user login with correct email and password
+        $password = base64_encode($password); // encrypt password before comparing with database
+        $password2 = base64_decode($password);
         $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
         $result = mysqli_query($db, $query);
         if (mysqli_num_rows($result) == 1){
-            //user log in
-            $_SESSION['success'] = "Welcome" . $f_name . $l_name;
+            //user success login
+            $query = "SELECT f_name, l_name FROM users WHERE email='$email'";
+            $result = mysqli_query($db,$query);
+
+            while ($rows = mysqli_fetch_assoc($result)){
+                $username = $rows['f_name'] . " " . $rows["l_name"];
+            }
+            $_SESSION['success'] = $username;
+
+               //user checked to remember email and password
+            if(!empty($_POST["remember"]))
+            {
+                setcookie("saveemail",$email,time()+ (10*365*24*60*60));
+                setcookie("savepassword",$password2,time()+ (10*365*24*60*60));
+            }
+            //user unchecked to unremember email and password
+            else{
+                if(isset($_COOKIE["saveemail"])){
+                    setcookie ("saveemail","");
+                }
+                if(isset($_COOKIE["savepassword"])){
+                    setcookie ("savepassword", "");
+                }
+            }
             header('location: index.php'); // redirect to homepage
         }else{
+            //user fail to login
             array_push($errors, "The email or password is incorrect");
         }
     }
@@ -85,6 +110,7 @@ if (isset($_POST['login'])){
 //if user logout
 if (isset($_GET['logout'])){
     session_destroy();
+    unset($_SESSION['success']);
     header('location: index.php');
 }
 
