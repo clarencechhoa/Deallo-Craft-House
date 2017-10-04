@@ -12,7 +12,7 @@ $username = "root";
 $password = "";
 $database = "registration";
 
-$db = mysqli_connect($servername,$username,$password,$database);
+$db = new mysqli($servername,$username,$password,$database);
 
 //check connection
 if ($db -> connect_error){
@@ -27,7 +27,7 @@ if ($db -> connect_error){
         role VARCHAR(255) NOT NULL
     )";
 
-    $db = mysqli_connect($servername, $username, $password, $databaseName);
+    $db = new mysqli($servername, $username, $password, $databaseName);
 
 }
 
