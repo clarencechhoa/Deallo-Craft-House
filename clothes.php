@@ -26,6 +26,8 @@
 <body>
 
 
+
+
      <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
@@ -139,6 +141,8 @@
             <p class="m-0 text-center text-white">Copyright &copy; Deallo Craft House Ltd. 2017</p>
         </div>
     </footer>
+
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/popper/popper.min.js"></script>

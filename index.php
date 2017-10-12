@@ -1,4 +1,5 @@
 <?php include('server.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +7,10 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="home page">
+    <meta name="author" content="Celina Phang">
 
-    <title>Small Business - Start Bootstrap Template</title>
+    <title>Deallo Craft House</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,17 +41,29 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="index.php">Home
                                 <span class="sr-only">(current)</span>
-                </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="clothes.php">Clothes</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="clothes.php">Clothes</a></li>
+                                <li><a class="dropdown-item" href="#">Categories</a></li>
+                                <li><a class="dropdown-item" href="#">Categories</a></li>
+                                <li><a class="dropdown-item" href="#">Categories</a></li>
+                                <li><a class="dropdown-item" href="#">Categories</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
                     </ul>
+<<<<<<< HEAD
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
@@ -64,14 +77,16 @@
                 </li>
 
                 </ul>
+=======
+>>>>>>> origin/master
                 </span>
             </div>
 
-            <!-- Search bar -->
-            <form class="form-inline">
+            <!-- Search bar and button -->
+            <form class="form-inline search">
                 <input class="form-control" type="text" placeholder="Search">
             </form>
-            <button class="btn btn-outline-success pull-right" type="submit">Search</button>
+            <button class="btn btn-outline-success pull-right searchbtn" type="submit">Search</button>
 
         </div>
 
@@ -84,6 +99,7 @@
             <?php unset($_SESSION['success']);?>
 
         <?php else: ?>
+
             <!-- Popover for havent login-->
             <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Login" data-content='<form method="post" action="login.php">
                                 <div class="form-group">
@@ -93,8 +109,9 @@
                                 <input type="checkbox" class="form-check-input" name="remember" <?php if(isset($_COOKIE["saveemail"])) {?> checked <?php } ?> >Remember Password</label>
                                 <br><br><button type="submit" class="btn btn-success btn-xs" id="loginpopbtn" name="login">Log In</button>
                                 <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
-                </data-container>
+            </data-container>
         <?php endif; ?>
+
     <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
  </nav>
 
@@ -104,7 +121,7 @@
         <!-- Heading Row -->
         <div class="row my-4">
             <div class="col-lg-8">
-                <img class="img-fluid rounded" src="http://placehold.it/900x400" alt="">
+                <img class="img-fluid rounded" src="images/home/banner3.jpg" alt="banner">
             </div>
             <!-- /.col-lg-8 -->
             <div class="col-lg-4">
@@ -126,37 +143,46 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title">LATEST</h2>
-                        <p class="card-text">Latest products posted by our entrepreneurs from all over the world.</p>
+                <div class="card h-70">
+                    <div class="card-body imageContainer">
+                        <img src="images/home/bluedress.jpg" alt="dress" class="image">
+                        <div class="middle">
+                            <h2 class="card-title">LATEST</h2>
+                            <p class="card-text">Latest products posted by our entrepreneurs from all over the world.</p>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">View</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.col-md-4 -->
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title">HOT PICKS</h2>
-                        <p class="card-text">Trendy items that are on the best selling rank.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">View</a>
+                    <div class="card-footer text-center">
+                        <a href="#" class="btn btn-primary custom">View</a>
                     </div>
                 </div>
             </div>
             <!-- /.col-md-4 -->
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title">Card Three</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                <div class="card h-70">
+                    <div class="card-body imageContainer">
+                        <img src="images/home/jewellery.jpg" alt="jewellery" class="image">
+                        <div class="middle">
+                            <h2 class="card-title">HOT PICKS</h2>
+                            <p class="card-text">Trendy items that are on the best selling rank.</p>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">View</a>
+                    <div class="card-footer text-center">
+                        <a href="#" class="btn btn-primary custom">View</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-70">
+                    <div class="card-body imageContainer">
+                        <img src="images/home/decor.png" alt="decor" class="image">
+                        <div class="middle">
+                            <h2 class="card-title">Card Three</h2>
+                            <p class="card-text">Something</p>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#" class="btn btn-primary custom">View</a>
                     </div>
                 </div>
             </div>
@@ -168,10 +194,11 @@
     </div>
     <!-- /.container -->
 
+
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="row social">
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-sm-6 col-xs-12 img-hover">
                 <a href="https://twitter.com/gsmarena_com" target="_blank"><img src="images/social/twitter.png" alt="twitter" class="img-responsive" id="twitter" /></a>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -184,6 +211,7 @@
                 <a href="https://www.instagram.com/phonearena/?hl=en" target="_blank"><img src="images/social/instagram.png" alt="instagram" class="img-responsive" id="instagram" /></a>
             </div>
         </div>
+        <br/>
         <br/>
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Deallo Craft House Ltd. 2017</p>
