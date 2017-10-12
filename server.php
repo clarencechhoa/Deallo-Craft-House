@@ -14,7 +14,7 @@ $errors = array();
     $dbname = 'registration';
     $queryToCreateDB = " CREATE DATABASE IF NOT EXISTS $dbname";
     $queryCustomerTB = "CREATE TABLE IF NOT EXISTS users (
-        userID INT(11) NOT NULL AUTO_INCREMENT
+        userID INT(11) NOT NULL AUTO_INCREMENT,
         f_name VARCHAR(255) NOT NULL,
         l_name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
