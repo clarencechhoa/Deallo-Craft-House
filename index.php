@@ -62,24 +62,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+
+                        <!--check if it is seller provide this link php *Stephen-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="upload.php">Upload</a>
+                        </li>
                     </ul>
-<<<<<<< HEAD
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-
-                 <li class="nav-item">
-                    <a class="nav-link" href="upload.php">Upload</a>
-                </li>
-
-                </ul>
-=======
->>>>>>> origin/master
-                </span>
+            </span>
             </div>
 
             <!-- Search bar and button -->
