@@ -6,19 +6,14 @@ $f_name = "";
 $l_name = "";
 $errors = array();
 
-//create connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "registration";
+//connect to databases
 
-$db = new mysqli($servername,$username,$password,$database);
-
-//check connection
-if ($db->connect_error){
-
-    $databaseName = "CREATE DATABASE registration";
-    $databaseTable = "CREATE TABLE users (
+    $dbhost = 'localhost';
+    $dbuser = 'root';
+    $dbpass = '';
+    $dbname = 'registration';
+    $queryToCreateDB = " CREATE DATABASE IF NOT EXISTS $dbname";
+    $queryCustomerTB = "CREATE TABLE IF NOT EXISTS users (
         userID INT(11) NOT NULL AUTO_INCREMENT
         f_name VARCHAR(255) NOT NULL,
         l_name VARCHAR(255) NOT NULL,
@@ -26,14 +21,22 @@ if ($db->connect_error){
         password VARCHAR(255) NOT NULL,
         role VARCHAR(255) NOT NULL
     )";
+    //connection to mysql
+    $db = mysqli_connect($dbhost, $dbuser, $dbpass);
+    if(!$db ){
+     die("Could not connect to mysql. " );
+    }
+    //query to create database if not exist
+    mysqli_query($db, $queryToCreateDB);
+    //select database to connect
+    $connect_db = mysqli_select_db($db,$dbname);
+    if(!$connect_db ){
+     die("Could not connect to database. ");
+    }
+    //query to create table if customer table not exist
+    mysqli_query($db, $queryCustomerTB);
 
-    $db2 = mysqli_connect($servername, $username, $password, $databaseName);
 
-}
-else
-{
-    $db = mysqli_connect($servername,$username,$password,$database);
-}
 
 //if the register button is clicked
 if(isset($_POST['register'])){
