@@ -41,34 +41,36 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="index.php">Home
                                 <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
+                </a>
+                </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="clothes.php">Clothes</a></li>
-                                <li><a class="dropdown-item" href="#">Categories</a></li>
-                                <li><a class="dropdown-item" href="#">Categories</a></li>
-                                <li><a class="dropdown-item" href="#">Categories</a></li>
-                                <li><a class="dropdown-item" href="#">Categories</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-
-                        <!--check if it is seller provide this link php *Stephen-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="upload.php">Upload</a>
-                        </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="clothes.php">Clothes & Accessories</a></li>
+                        <li><a class="dropdown-item" href="#">Jewelleries</a></li>
+                        <li><a class="dropdown-item" href="#">Craft Supplies</a></li>
+                        <li><a class="dropdown-item" href="#">Bedding & Room Decorations</a></li>
+                        <li><a class="dropdown-item" href="#">Soft Toys</a></li>
+                        <li><a class="dropdown-item" href="#">Vintage Arts</a></li>
+                        <li><a class="dropdown-item" href="#">Wedding Accessories</a></li>
                     </ul>
-            </span>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+
+                <!--check if it is seller provide this link php *Stephen-->
+                <li class="nav-item">
+                    <a class="nav-link" href="upload.php">Upload</a>
+                </li>
+                </ul>
+                </span>
             </div>
 
             <!-- Search bar and button -->
@@ -81,13 +83,12 @@
 
         <!-- using php changing interface before log in and after -->
         <?php if (isset($_SESSION['success'])): ?>
-            <!-- Popover for success log in -->
-            <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Welcome <?php echo $_SESSION['success'];?>"
-                            data-content='<p id="signup"><a href="index.php?logout="1"""><em>Log out</em></a></p>'>
+        <!-- Popover for success log in -->
+        <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Welcome <?php echo $_SESSION['success'];?>" data-content='<p id="signup"><a href="index.php?logout="1"""><em>Log out</em></a></p>'>
             </data-container>
             <?php unset($_SESSION['success']);?>
 
-        <?php else: ?>
+            <?php else: ?>
 
             <!-- Popover for havent login-->
             <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Login" data-content='<form method="post" action="login.php">
@@ -98,11 +99,11 @@
                                 <input type="checkbox" class="form-check-input" name="remember" <?php if(isset($_COOKIE["saveemail"])) {?> checked <?php } ?> >Remember Password</label>
                                 <br><br><button type="submit" class="btn btn-success btn-xs" id="loginpopbtn" name="login">Log In</button>
                                 <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
-            </data-container>
-        <?php endif; ?>
+                </data-container>
+                <?php endif; ?>
 
-    <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
- </nav>
+                <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
+    </nav>
 
     <!-- Page Content -->
     <div class="container">
@@ -211,5 +212,6 @@
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
+
 </html>

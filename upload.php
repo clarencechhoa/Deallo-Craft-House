@@ -6,28 +6,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Celina Phang">
 
-    <title>Small Business - Start Bootstrap Template</title>
-
+    <title>Deallo Craft House</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this templates -->
     <link href="css/small-business.css" rel="stylesheet">
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/small-business.js"></script>
     <script src="vendor/bootstrap/js/jquery.isotope.min.js"></script>
-
 </head>
 
 <body>
 
-
-     <!-- Navigation bar -->
+    <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
         <a class="navbar-brand" href="index.php">Deallo Craft House Ltd.</a>
@@ -47,10 +44,13 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
+                        <li><a class="dropdown-item" href="#">Clothes & Accessories</a></li>
+                        <li><a class="dropdown-item" href="#">Jewelleries</a></li>
+                        <li><a class="dropdown-item" href="#">Craft Supplies</a></li>
+                        <li><a class="dropdown-item" href="#">Bedding & Room Decorations</a></li>
+                        <li><a class="dropdown-item" href="#">Soft Toys</a></li>
+                        <li><a class="dropdown-item" href="#">Vintage Arts</a></li>
+                        <li><a class="dropdown-item" href="#">Wedding Accessories</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -58,6 +58,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="upload.php">Upload</a>
                 </li>
                 </ul>
                 </span>
@@ -78,56 +81,51 @@
                             <input type="password" class="form-control" placeholder="Password" maxlength="12" id="passborder" size="25" style="margin-bottom: 10px;"/>
                             <button type="button" class="btn btn-success btn-xs" id="loginpopbtn"><a href="">Log In</a></button>
                             <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
-            <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
+        <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
         </a>
     </nav>
 
-    <!--Title-->
-        <div class="card text-white bg-secondary my-4 text-center">
-            <div class="card-body">
-                <p class="text-white m-0 lead">Upload Your Product</p>
+
+    <h2 style="color: black; font-weight: bold; text-align: center; margin-top: 20px; margin-bottom: 20px">Upload Product</h2>
+
+
+    <div class="container jumbotron">
+
+        <form method="post" action="list.php" id="eform" enctype="multipart/form-data">
+            <div class="form-group">
+                <h4>Product's Categories</h4>
+                <div class="row">
+                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="Clothes&Accessories">&emsp;Clothes & Accessories</div>
+                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="Jewellery">&emsp;Jewellery</div>
+                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="CraftSupplies">&emsp;Craft Supplies</div>
+                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="Bedding&RoomDecoration">&emsp;Bedding & Room Decoration</div>
+                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="SoftToy">&emsp;Soft Toys</div>
+                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="VintageArt">&emsp;Vintage Art</div>
+                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="WeddingAccessories">&emsp;Wedding Accessories</div>
+                </div>
             </div>
-        </div>
 
-<form method="post" action="list.php" id="eform" enctype="multipart/form-data">
-  <div class="form-group">
- <p>Product's Categories</p>
+            <div class="form-group">
+                <h4 for="productprice">Product Price</h4>
+                <input type="text" class="form-control" id="productprice" name="productprice" placeholder="Enter your product price">
+            </div>
 
-     <input type="radio" name="productcategories" class="radio-inline" value="Clothes&Accessories">Clothes & Accessories &nbsp
-       <input type="radio" name="productcategories" class="radio-inline" value="Jewellery">Jewellery &nbsp
-      <input type="radio" name="productcategories" class="radio-inline" value="CraftSupplies">Craft Supplies &nbsp
-      <input type="radio" name="productcategories" class="radio-inline" value="Bedding&RoomDecoration">Bedding & Room Decoration &nbsp
-      <input type="radio" name="productcategories" class="radio-inline" value="SoftToy">Soft Toy &nbsp
-    <input type="radio" name="productcategories" class="radio-inline" value="VintageArt">Vintage Art &nbsp
-       <input type="radio" name="productcategories" class="radio-inline" value="WeddingAccessories">Wedding Accessories
-  </div>
-  <div class="form-group">
-    <label for="productprice">Product Price</label>
-    <input type="text" class="form-control" id="productprice" name="productprice" placeholder="Enter your product price">
+            <div class="form-group">
+                <h4 for="productdesc">Product Description</h4>
+                <input type="text" class="form-control" id="productdesc" name="productdesc" placeholder="Enter your product description">
+            </div>
 
-  </div>
+            <div class="form-group">
+                <h4 for="productimage">Product image</h4>
+                <input type="file" class="form-control-file" id="productimage" name="productimage">
+            </div>
 
-  <div class="form-group">
-    <label for="productdesc">Product Description</label>
-    <input type="text" class="form-control" id="productdesc" name="productdesc" placeholder="Enter your product description">
-
-  </div>
-       <div class="form-group">
-    <label for="productimage">Product image</label>
-    <input type="file" class="form-control-file" id="productimage" name="productimage">
-
-  </div>
-<!--
-  <div class="form-group">
-    <label for="productimage">Image</label>
-    <input type="file" class="form-control-file" aria-describedby="fileHelp" id="productimage">
-
-  </div>
--->
-    <input type="submit" value="Submit" class="btn btn-primary" id="uploadproduct"/>
-    </form>
+            <input type="submit" value="Submit" class="btn btn-primary" id="uploadproduct" />
+        </form>
+    </div>
 
 
+    <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="row social">
             <div class="col-md-3 col-sm-6 col-xs-12">
