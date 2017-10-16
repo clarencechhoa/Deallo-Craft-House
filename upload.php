@@ -105,6 +105,11 @@
                 </div>
             </div>
 
+             <div class="form-group">
+                <h4 for="productname">Product Name</h4>
+                <input type="text" class="form-control" id="productname" name="productname" placeholder="Enter your product name">
+            </div>
+
             <div class="form-group">
                 <h4 for="productprice">Product Price</h4>
                 <input type="text" class="form-control" id="productprice" name="productprice" placeholder="Enter your product price">
