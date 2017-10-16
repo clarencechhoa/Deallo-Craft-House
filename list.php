@@ -27,6 +27,7 @@
     <?php
 
     $productcate1 =$_POST["productcategories"];
+    $productname1 = $_POST["productname"];
     $productprice1 =$_POST["productprice"];
     $productdesc1 =$_POST["productdesc"];
     $image_name = $_FILES["productimage"]['name'];
@@ -139,6 +140,11 @@
                         echo "<p style=\"text-align:center;\">".($productcate1)."</p>";
                     }
                 }
+            ?>
+
+            <h4 style="margin-top:15px; text-align:center;">Product Name</h4>
+            <?php
+                echo "<p style=\"text-align:center;\">".($productname1)."</p>";
             ?>
 
             <h4 style="margin-top:15px; text-align:center;">Product Price</h4>
