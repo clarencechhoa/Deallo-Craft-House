@@ -84,6 +84,7 @@ if(isset($_POST['register'])){
         $sql = "INSERT INTO users (f_name, l_name, email, password, role) VALUES ('$f_name', '$l_name', '$email', '$password', '$role')";
         mysqli_query($db, $sql);
         $_SESSION['success'] = $f_name ." ". $l_name;
+        $_SESSION['roledisplay'] = $role;
         header('location: index.php'); // redirect to homepage
     }
 
@@ -110,13 +111,26 @@ if (isset($_POST['login'])){
         $result = mysqli_query($db, $query);
         if (mysqli_num_rows($result) == 1){
             //user success login
-            $query = "SELECT f_name, l_name FROM users WHERE email='$email'";
+            $query = "SELECT f_name, l_name, role FROM users WHERE email='$email'";
             $result = mysqli_query($db,$query);
 
             while ($rows = mysqli_fetch_assoc($result)){
                 $username = $rows['f_name'] . " " . $rows["l_name"];
+                $role = $rows['role'];
             }
+
             $_SESSION['success'] = $username;
+            $_SESSION['roledisplay'] = $role;
+            $seller = "seller";
+
+            //check buyer or seller
+            if (strcmp($_SESSION['roledisplay'], $seller)){
+                $_SESSION['buyer'] = "a";
+            }
+            else
+            {
+                $_SESSION['seller'] = "b";
+            }
 
                //user checked to remember email and password
             if(!empty($_POST["remember"]))
@@ -145,6 +159,7 @@ if (isset($_POST['login'])){
 if (isset($_GET['logout'])){
     session_destroy();
     unset($_SESSION['success']);
+    unset($_SESSION['roledisplay']);
     header('location: index.php');
 }
 
