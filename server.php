@@ -13,7 +13,8 @@ $errors = array();
     $dbpass = '';
     $dbname = 'registration';
     $queryToCreateDB = "CREATE DATABASE IF NOT EXISTS $dbname";
-    $queryCustomerTB = "CREATE TABLE IF NOT EXISTS users (
+    $queryCustomerTB = array();
+    $queryCustomerTB[] = "CREATE TABLE IF NOT EXISTS users (
         userID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         f_name VARCHAR(255) NOT NULL,
         l_name VARCHAR(255) NOT NULL,
@@ -21,6 +22,14 @@ $errors = array();
         password VARCHAR(255) NOT NULL,
         role VARCHAR(255) NOT NULL
     )";
+    $queryCustomerTB[] = "CREATE TABLE IF NOT EXISTS products(
+        productID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        p_categories VARCHAR(255) NOT NULL,
+        p_name VARCHAR(255) NOT NULL,
+        p_price INT(255) NOT NULL,
+        p_desc VARCHAR(255) NOT NULL
+    )";
+
     //connection to mysql
     $db = mysqli_connect($dbhost, $dbuser, $dbpass);
     if(!$db ){
@@ -33,9 +42,11 @@ $errors = array();
     if(!$connect_db ){
      die("Could not connect to database. ");
     }
-    //query to create table if customer table not exist
-    mysqli_query($db, $queryCustomerTB);
 
+    //query create table inside that array if does not exist
+    foreach ($queryCustomerTB as $sql){
+        mysqli_query($db,$sql);
+    }
 
 
 //if the register button is clicked
