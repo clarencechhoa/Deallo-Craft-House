@@ -27,7 +27,8 @@ $errors = array();
         p_categories VARCHAR(255) NOT NULL,
         p_name VARCHAR(255) NOT NULL,
         p_price INT(255) NOT NULL,
-        p_desc VARCHAR(255) NOT NULL
+        p_desc VARCHAR(255) NOT NULL,
+        image BLOB NOT NULL
     )";
 
     //connection to mysql
@@ -47,6 +48,22 @@ $errors = array();
     foreach ($queryCustomerTB as $sql){
         mysqli_query($db,$sql);
     }
+
+//if user upload button product is clicked
+if(isset($_POST['upload'])){
+    $p_categories = mysqli_real_escape_string($db,$_POST['productcategories']);
+    $p_name = mysqli_real_escape_string($db,$_POST['productname']);
+    $p_price = mysqli_real_escape_string($db,$_POST['productprice']);
+    $p_desc = mysqli_real_escape_string($db,$_POST['productdesc']);
+    $file = $_FILES['image']['tmp_name'];
+    $image=addslashes(file_get_contents($_FILES['image']['tmp_name']));
+    $image_name = addslashes($_FILES['image']['name']);
+
+
+     $sql ="INSERT INTO products( p_categories, p_name, p_price, p_desc, image) VALUES ('$p_categories', '$p_name', '$p_price', '$p_desc', '$image')";
+     mysqli_query($db, $sql);
+
+}
 
 
 //if the register button is clicked

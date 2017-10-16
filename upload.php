@@ -1,3 +1,4 @@
+<?php include('server.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,17 +92,24 @@
 
     <div class="container jumbotron">
 
-        <form method="post" action="list.php" id="eform" enctype="multipart/form-data">
+        <form method="post" action="upload.php" id="eform" enctype="multipart/form-data">
+             <?php include('errors.php'); ?>
             <div class="form-group">
                 <h4>Product's Categories</h4>
                 <div class="row">
-                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="Clothes&Accessories">&emsp;Clothes & Accessories</div>
-                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="Jewellery">&emsp;Jewellery</div>
-                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="CraftSupplies">&emsp;Craft Supplies</div>
-                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="Bedding&RoomDecoration">&emsp;Bedding & Room Decoration</div>
-                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="SoftToy">&emsp;Soft Toys</div>
-                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="VintageArt">&emsp;Vintage Art</div>
-                    <div class="col-md-4"><input type="radio" name="productcategories" class="radio-inline" value="WeddingAccessories">&emsp;Wedding Accessories</div>
+                    <div class="col-md-4">
+                        <select class="radio-inline" name="productcategories">
+                            <option value="Clothes&Accessories">Clothes & Accessories</option>
+                            <option value="Jewellery">Jewellery</option>
+                            <option value="CraftSupplies">Craft Supplies</option>
+                            <option value="Bedding&RoomDecoration">Bedding & Room Decoration</option>
+                            <option value="SoftToy">Soft Toys</option>
+                            <option value="VintageArt">Vintage Art</option>
+                            <option value="WeddingAccessories">Wedding Accessories</option>
+                        </select>
+
+                    </div>
+
                 </div>
             </div>
 
@@ -122,10 +130,11 @@
 
             <div class="form-group">
                 <h4 for="productimage">Product image</h4>
-                <input type="file" class="form-control-file" id="productimage" name="productimage">
+                <input type="file" name="image">
+
             </div>
 
-            <input type="submit" value="Submit" class="btn btn-primary" id="uploadproduct" />
+            <button type="submit" name="upload" class="btn btn-primary" id="uploadproduct">Upload</button>
         </form>
     </div>
 
