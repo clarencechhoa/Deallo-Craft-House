@@ -65,10 +65,16 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
 
+            <?php if(isset($_SESSION['seller'])): ?>
+
                 <!--check if it is seller provide this link php *Stephen-->
                 <li class="nav-item">
                     <a class="nav-link" href="upload.php">Upload</a>
                 </li>
+            <?php else: ?>
+
+            <?php endif; ?>
+
                 </ul>
                 </span>
             </div>
@@ -86,7 +92,7 @@
         <!-- Popover for success log in -->
         <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Welcome <?php echo $_SESSION['success'];?>" data-content='<p id="signup"><a href="index.php?logout="1"""><em>Log out</em></a></p>'>
             </data-container>
-            <?php unset($_SESSION['success']);?>
+
 
             <?php else: ?>
 
