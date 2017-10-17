@@ -113,3 +113,13 @@ body {
 .imageContainer:hover .middle {
   opacity: 1;
 }
+
+
+
+.popup{
+    background-color: red;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 4px;
+    display:none;
+}

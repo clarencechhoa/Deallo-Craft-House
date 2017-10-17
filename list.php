@@ -1,3 +1,4 @@
+<?php include('server.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,15 +25,7 @@
 
 <body>
 
-    <?php
 
-    $productcate1 =$_POST["productcategories"];
-    $productname1 = $_POST["productname"];
-    $productprice1 =$_POST["productprice"];
-    $productdesc1 =$_POST["productdesc"];
-    $image_name = $_FILES["productimage"]['name'];
-
-    ?>
 
 <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -101,65 +94,124 @@
             <h2 style="color: black; font-weight: bold; margin-top: 20px; margin-bottom: 20px">Product Uploaded</h2>
         </div>
         <div class="jumbotron">
-            <div class="col-md-12">
-                <div class="img-thumbnail col-md-3" style="margin: auto; width: 50%; border: 1px solid grey; padding: 10px;">
-                    <img src="images/skirt.jpg" alt="imguploaded" class="img-responsive" style="margin: auto; display: block">
+
+
+            <div id="image_data">
+
+
+            </div>
+
+            <div id="imageModal">
+                <div class="popup">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4>Edit Product Information</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form id="image_form" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <h4>Product's Categories</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <select class="radio-inline" name="productcategories">
+                            <option value="Clothes & Accessories">Clothes & Accessories</option>
+                            <option value="Jewellery">Jewellery</option>
+                            <option value="CraftSupplies">Craft Supplies</option>
+                            <option value="Bedding & RoomDecoration">Bedding & Room Decoration</option>
+                            <option value="SoftToy">Soft Toys</option>
+                            <option value="VintageArt">Vintage Art</option>
+                            <option value="WeddingAccessories">Wedding Accessories</option>
+                        </select>
+
+                    </div>
+
                 </div>
             </div>
 
-            <h4 style="margin-top:15px; text-align:center;">Product Categories</h4>
-            <?php
-            if(isset($productcate1))
-                {
-                    if( $productcate1 =='Clothes&Accessories')
-                    {
-                        echo "<p style=\"text-align:center;\">".($productcate1)."</p>";
-                    }
-                    else if( $productcate1 =='Jewellery')
-                    {
-                        echo "<p style=\"text-align:center;\">".($productcate1)."</p>";
-                    }
-                    else if( $productcate1 =='CraftSupplies')
-                    {
-                        echo "<p style=\"text-align:center;\">".($productcate1)."</p>";
-                    }
-                    else if( $productcate1 =='Bedding&RoomDecoration')
-                    {
-                        echo "<p style=\"text-align:center;\">".($productcate1)."</p>";
-                    }
-                    else if( $productcate1 =='VintageArt')
-                    {
-                        echo "<p style=\"text-align:center;\">".($productcate1)."</p>";
-                    }
-                    else if( $productcate1 =='WeddingAccessories')
-                    {
-                        echo "<p style=\"text-align:center;\">".($productcate1)."</p>";
-                    }
-                    else if( $productcate1 =='SoftToy')
-                    {
-                        echo "<p style=\"text-align:center;\">".($productcate1)."</p>";
-                    }
-                }
-            ?>
-
-            <h4 style="margin-top:15px; text-align:center;">Product Name</h4>
-            <?php
-                echo "<p style=\"text-align:center;\">".($productname1)."</p>";
-            ?>
-
-            <h4 style="margin-top:15px; text-align:center;">Product Price</h4>
-            <?php
-                echo"<p style=\"text-align:center;\">".($productprice1)."</p>";
-            ?>
-
-            <h4 style="margin-top:15px; text-align:center;">Product Description</h4>
-            <?php
-                echo"<p style=\"text-align:center;\">".($productdesc1)."</p>";
-            ?>
-
-            <div class="okbutton" style="text-align:center">
-                <a href="index.php"><input type="submit" value="OK" class="btn btn-primary" id="uploadproduct"/></a>
+             <div class="form-group">
+                <h4 for="productname">Product Name</h4>
+                <input type="text" class="form-control" id="productname" name="productname" placeholder="Enter your product name">
             </div>
+
+            <div class="form-group">
+                <h4 for="productprice">Product Price</h4>
+                <input type="text" class="form-control" id="productprice" name="productprice" placeholder="Enter your product price">
+            </div>
+
+            <div class="form-group">
+                <h4 for="productdesc">Product Description</h4>
+                <input type="text" class="form-control" id="productdesc" name="productdesc" placeholder="Enter your product description">
+            </div>
+
+            <div class="form-group">
+                <h4 for="productimage">Product image</h4>
+                <input type="file" name="image" id="image">
+
+            </div>
+
+                            <input type="hidden" name="action" id="action" value="insert" class="btn btn-primary"  />
+                            <input type="hidden" name="image_id" id="image_id" class="btn btn-primary" />
+                            <input type="submit" name="insert" id="insert" value="Submit" class="btn btn-primary" />
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <script>
+                $(document).ready(function(){
+                    fetch_data();
+
+                    function fetch_data()
+                    {
+                        var action = "fetch";
+                        $.ajax({
+                            url:"server.php",
+                            method:"POST",
+                            data:{action:action},
+                            success:function(data)
+                            {
+                                $('#image_data').html(data)
+                            }
+                        })
+                    }
+
+
+                    //pop out the edit
+                    $(document).on('click', '.edit', function(){
+                        $('#image_id').val($(this).attr("id"));
+                        $('#action').val("edit");
+                      $(".popup").fadeIn('slow');
+                    });
+
+                    //hide the edit
+                    $(".close").on('click', function(){
+                        $(".popup").fadeOut('slow');
+                    });
+
+                    //delete product
+                    $(document).on('click','.delete', function(){
+                         var image_id = $(this).attr("id");
+                        var action = "delete";
+
+                        $.ajax({
+                            url:"server.php",
+                            method:"POST",
+                            data:{image_id:image_id, action:action},
+                            success:function(data){
+                                fetch_data();
+                            }
+                        })
+                    });
+
+                });
+
+
+            </script>
 
         </div>
     </div>
