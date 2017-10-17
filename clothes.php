@@ -1,3 +1,9 @@
+<?php
+
+
+include("server.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,13 +131,31 @@
 
                     <!-- Run here comment from SQL -->
                     <div class="card" style="margin-top:15px;">
-                        <div class="card-header">
-                            Username
-                        </div>
+
                         <div class="card-block container">
                             <blockquote class="card-blockquote">
-                                <p>Comment Here</p>
+                                <div id="commentdata">
+                                </div>
+
                             </blockquote>
+                            <script>
+                                $(document).ready(function(){
+                                   fetch_data2();
+
+                                    function fetch_data2(){
+                                        var action2="display";
+                                        $.ajax({
+                                            url:"server.php",
+                                            method:"POST",
+                                            data:{action2:action2},
+                                            success:function(data)
+                                            {
+                                                $('#commentdata').html(data)
+                                            }
+                                        })
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
 
@@ -150,16 +174,17 @@
 
                         <div class="row" id="post-review-box" style="display:none;">
                             <div class="col-md-12">
-                                <form accept-charset="UTF-8" action="" method="post">
+                                 <form accept-charset="UTF-8" action="" method="post">
                                     <input id="ratings-hidden" name="rating" type="hidden">
-                                    <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5" style="-webkit-transition: height 0.2s; -moz-transition: height 0.2s; transition: height 0.2s;"></textarea>
+                                    <input type="hidden" name="date" value="'.date("Y-m-d H:i:s").'">
+                                    <textarea class="form-control animated" cols="50" id="new-review" name="message" placeholder="Enter your review here..." rows="5" style="-webkit-transition: height 0.2s; -moz-transition: height 0.2s; transition: height 0.2s;"></textarea>
 
                                     <div class="text-right">
                                         <div class="stars starrr" data-rating="0" style="margin: 20px 0;
     font-size: 24px; color: #d17581;"></div>
                                         <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
                                     <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                                        <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                        <button class="btn btn-success btn-lg" type="submit" name="commentSubmit">Save</button>
                                     </div>
                                 </form>
                             </div>

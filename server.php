@@ -29,6 +29,15 @@ $errors = array();
         p_price INT(255) NOT NULL,
         p_desc VARCHAR(255) NOT NULL,
         image BLOB NOT NULL
+
+
+    )";
+
+ $queryCustomerTB[] = "CREATE TABLE IF NOT EXISTS commentsection(
+        cid INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        date DATETIME NOT NULL,
+        message TEXT NOT NULL
+
     )";
 
     //connection to mysql
@@ -251,6 +260,33 @@ if (isset($_GET['logout'])){
     unset($_SESSION['success']);
     unset($_SESSION['roledisplay']);
     header('location: index.php');
+}
+
+//upload comment data
+if(isset($_POST['commentSubmit'])){
+
+    $message = mysqli_real_escape_string($db,$_POST['message']);
+     $sql ="INSERT INTO commentsection(date,message) VALUES (NOW(),'$message')";
+      mysqli_query($db, $sql);
+
+
+}
+
+//display comment data
+if(isset($_POST['action2'])){
+    if($_POST['action2'] == "display"){
+
+        $sql ="SELECT * FROM commentsection";
+         $result = mysqli_query($db, $sql);
+
+        while($row = mysqli_fetch_array($result)){
+
+          echo  '<p>';
+                echo $row['date']. ": ";
+                echo $row['message'];
+        echo     '</p>';
+        }
+    }
 }
 
 ?>
