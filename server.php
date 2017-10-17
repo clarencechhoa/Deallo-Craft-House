@@ -65,6 +65,68 @@ if(isset($_POST['upload'])){
 
 }
 
+//display seller uploaded product
+if(isset($_POST['action'])){
+    if($_POST['action'] == "fetch"){
+        $query = "SELECT * FROM products ORDER BY productID ASC";
+        $result = mysqli_query($db,$query);
+        $output = '
+        <table>
+            <tr>
+                <th width="20%">Product Categories</th>
+                <th width="20%">Product Image</th>
+                <th width="20%">Product Name</th>
+                <th width="20%">Product Price</th>
+                <th width="20%">Product Description</th>
+            </tr>
+        ';
+        while($row = mysqli_fetch_array($result)){
+                $output .= '
+                    <tr>
+                        <td>'.$row['p_categories'].'</td>
+                        <td><img src="data:image/jpeg;base64, '.base64_encode($row['image']).'" height="100" width="100" style="margin-top:50px;"/></td>
+                        <td>'.$row['p_name'].'</td>
+                        <td>'.$row['p_price'].'</td>
+                        <td>'.$row['p_desc'].'</td>
+                        <td>
+                    <button class="edit" type="button" name="edit" id="'.$row["productID"].'">Edit</button>
+                        </td>
+                        <td>
+                        <button class="delete" type="button" name="delete" id="'.$row["productID"].'">Delete</button>
+
+                        </td>
+                    </tr>
+                ';
+        }
+        $output .= '</table>';
+        echo $output;
+    }
+    if($_POST['action'] == "edit"){
+        $p_categories = mysqli_real_escape_string($db,$_POST['productcategories']);
+        $p_name = mysqli_real_escape_string($db,$_POST['productname']);
+        $p_price = mysqli_real_escape_string($db,$_POST['productprice']);
+        $p_desc = mysqli_real_escape_string($db,$_POST['productdesc']);
+        $file = $_FILES['image']['tmp_name'];
+        $image=addslashes(file_get_contents($_FILES['image']['tmp_name']));
+        $image_name = addslashes($_FILES['image']['name']);
+
+        $query="UPDATE products SET
+        p_categories = '$p_categories',
+        p_name = '$p_name',
+        p_price = '$p_price',
+        p_desc = '$p_desc',
+        image = '$image' WHERE productID ='".$_POST['image_id']."' ";
+
+        mysqli_query($db,$query);
+    }
+    if($_POST['action'] == "delete"){
+        $query= "DELETE FROM products WHERE productID ='".$_POST['image_id']."' ";
+        mysqli_query($db,$query);
+    }
+}
+
+
+
 
 //if the register button is clicked
 if(isset($_POST['register'])){
@@ -191,5 +253,5 @@ if (isset($_GET['logout'])){
     header('location: index.php');
 }
 
-
 ?>
+

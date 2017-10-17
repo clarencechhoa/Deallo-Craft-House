@@ -92,17 +92,17 @@
 
     <div class="container jumbotron">
 
-        <form method="post" action="upload.php" id="eform" enctype="multipart/form-data">
+        <form method="post" action="list.php" id="eform" enctype="multipart/form-data">
              <?php include('errors.php'); ?>
             <div class="form-group">
                 <h4>Product's Categories</h4>
                 <div class="row">
                     <div class="col-md-4">
                         <select class="radio-inline" name="productcategories">
-                            <option value="Clothes&Accessories">Clothes & Accessories</option>
+                            <option value="Clothes & Accessories">Clothes & Accessories</option>
                             <option value="Jewellery">Jewellery</option>
                             <option value="CraftSupplies">Craft Supplies</option>
-                            <option value="Bedding&RoomDecoration">Bedding & Room Decoration</option>
+                            <option value="Bedding & RoomDecoration">Bedding & Room Decoration</option>
                             <option value="SoftToy">Soft Toys</option>
                             <option value="VintageArt">Vintage Art</option>
                             <option value="WeddingAccessories">Wedding Accessories</option>
@@ -130,7 +130,7 @@
 
             <div class="form-group">
                 <h4 for="productimage">Product image</h4>
-                <input type="file" name="image">
+                <input type="file" name="image" >
 
             </div>
 
