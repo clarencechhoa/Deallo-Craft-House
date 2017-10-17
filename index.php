@@ -123,7 +123,6 @@
             <div class="col-lg-4">
                 <h1>Deallo Craft House</h1>
                 <p>Local boutique shop selling the best homemade crafts in Kuching. We provide homemade products in different categories such as clothing, jewellery, handmade items, craft supplies, vintage goods, room decor ans also soft toys.</p>
-                <a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
             </div>
             <!-- /.col-md-4 -->
         </div>
