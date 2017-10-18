@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -15,7 +16,7 @@ $errors = array();
     $queryToCreateDB = "CREATE DATABASE IF NOT EXISTS $dbname";
     $queryCustomerTB = array();
     $queryCustomerTB[] = "CREATE TABLE IF NOT EXISTS users (
-        userID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        userID INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
         f_name VARCHAR(255) NOT NULL,
         l_name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
@@ -23,20 +24,21 @@ $errors = array();
         role VARCHAR(255) NOT NULL
     )";
     $queryCustomerTB[] = "CREATE TABLE IF NOT EXISTS products(
-        productID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        productID INT(11) NOT NULL AUTO_INCREMENT,
         p_categories VARCHAR(255) NOT NULL,
         p_name VARCHAR(255) NOT NULL,
         p_price INT(255) NOT NULL,
         p_desc VARCHAR(255) NOT NULL,
-        image BLOB NOT NULL
+        image BLOB NOT NULL,
 
-
+        PRIMARY KEY (productID)
     )";
 
  $queryCustomerTB[] = "CREATE TABLE IF NOT EXISTS commentsection(
-        cid INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        cid INT(11) NOT NULL AUTO_INCREMENT,
         date DATETIME NOT NULL,
-        message TEXT NOT NULL
+        message TEXT NOT NULL,
+        PRIMARY KEY (cid)
 
     )";
 
@@ -131,6 +133,35 @@ if(isset($_POST['action'])){
     if($_POST['action'] == "delete"){
         $query= "DELETE FROM products WHERE productID ='".$_POST['image_id']."' ";
         mysqli_query($db,$query);
+    }
+
+
+    if($_POST['action'] == "fetchDisplay"){
+        $query = "SELECT * FROM products ORDER BY productID ASC";
+        $result = mysqli_query($db,$query);
+        while($row = mysqli_fetch_array($result)){
+
+            $output2 = '
+
+            <div class="col-md-3 img-thumbnail">
+             <img src="data:image/jpeg;base64, '.base64_encode($row['image']).'" width="100"/>
+            </div>
+                <div class="col-md-9" >
+                    <h3>Name</h3>
+                    <p>'.$row['p_name'].'</p>
+
+                    <h3>Price</h3>
+                    <p>'.$row['p_price'].'</p>
+
+                    <h3>Description</h3>
+                    <p>'.$row['p_desc'].'</p>
+
+                    <a href="cart.php" class="btn btn-primary">Add To Cart</a>
+                </div>
+
+            ';
+          echo $output2;
+        }
     }
 }
 
@@ -262,14 +293,12 @@ if (isset($_GET['logout'])){
     header('location: index.php');
 }
 
+
 //upload comment data
 if(isset($_POST['commentSubmit'])){
-
-    $message = mysqli_real_escape_string($db,$_POST['message']);
-     $sql ="INSERT INTO commentsection(date,message) VALUES (NOW(),'$message')";
+    $message=mysqli_real_escape_string($db,$_POST['message']);
+    $sql ="INSERT INTO commentsection(date,message) VALUES (NOW(),'$message')";
       mysqli_query($db, $sql);
-
-
 }
 
 //display comment data
@@ -289,5 +318,10 @@ if(isset($_POST['action2'])){
     }
 }
 
+
+
+
 ?>
+
+
 
