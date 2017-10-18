@@ -104,28 +104,10 @@ include("server.php");
         <!-- Select row of data repeat from here e.g. SELECT * FROM tblProduct -->
 
         <div class="row jumbotron">
-            <div class="row" id="row">
-                <div class="col-md-3 img-thumbnail">
 
-                    <img src="images/skirt.jpg" class="img-responsive" style="margin: auto; display: block">
+            <div class="row" id="product111">
 
-                </div>
 
-                <!--description-->
-                <div class="col-md-9">
-
-                    <h3>Name</h3>
-                    <p>Skirt</p>
-
-                    <h3>Price</h3>
-                    <p>$19.99</p>
-
-                    <h3>Description</h3>
-                    <p>Supposedly there are over one million words in the English Language. We trimmed some fat to take away really odd words and determiners. Then we grabbed the most popular words and built this word randomizer. Just keep clicking generate—chances are you won't find a repeat!</p>
-
-                    <a href="cart.php" class="btn btn-primary">Add To Cart</a>
-
-                </div>
             </div>
 
             <div class="row col-md-12" style="margin-top:15px;">
@@ -142,7 +124,26 @@ include("server.php");
 
                             </blockquote>
                             <script>
+
+
                                 $(document).ready(function(){
+
+                                    fetch_data();
+                                    function fetch_data()
+                                    {
+                                        var action = "fetchDisplay";
+                                        $.ajax({
+                                            url:"server.php",
+                                            method:"POST",
+                                            data:{action:action},
+                                            success:function(data)
+                                            {
+                                                $('#product111').html(data)
+                                            }
+                                        })
+                                    }
+
+
                                    fetch_data2();
 
                                     function fetch_data2(){
@@ -201,25 +202,6 @@ include("server.php");
         </div>
 
 
-        <!-- SELECT SQL UNTIL HERE -->
-
-
-        <!-- Pagination; incomplete yet-->
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
 
 
     </div>
