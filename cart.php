@@ -51,10 +51,13 @@ include("server.php");
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
+                        <li><a class="dropdown-item" href="clothes.php">Clothes & Accessories</a></li>
+                        <li><a class="dropdown-item" href="#">Jewelleries</a></li>
+                        <li><a class="dropdown-item" href="#">Craft Supplies</a></li>
+                        <li><a class="dropdown-item" href="#">Bedding & Room Decorations</a></li>
+                        <li><a class="dropdown-item" href="#">Soft Toys</a></li>
+                        <li><a class="dropdown-item" href="#">Vintage Arts</a></li>
+                        <li><a class="dropdown-item" href="#">Wedding Accessories</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

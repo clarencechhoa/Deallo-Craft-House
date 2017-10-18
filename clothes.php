@@ -66,7 +66,7 @@ include("server.php");
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-                        <li class="nav-item">
+            <li class="nav-item">
                     <a class="nav-link" href="upload.php">Upload</a>
                 </li>
                 </ul>
