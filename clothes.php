@@ -123,6 +123,8 @@ include("server.php");
                                 </div>
 
                             </blockquote>
+
+
                             <script>
 
 
@@ -157,7 +159,28 @@ include("server.php");
                                                 $('#commentdata').html(data)
                                             }
                                         })
-                                    }
+
+                                }
+
+                     //add to cart
+                    $(document).on('click', '.addtocart', function() {
+                        var image_id = $(this).attr("id");
+                        var action = "addtocart";
+
+                        $.ajax({
+                            url: "server.php",
+                            method: "POST",
+                            data: {
+                                image_id: image_id,
+                                action: action
+                            },
+
+                        })
+                    });
+
+
+
+
                                 });
                             </script>
                         </div>
