@@ -93,7 +93,7 @@
     <div class="container jumbotron">
 
         <form method="post" action="list.php" id="eform" enctype="multipart/form-data">
-             <?php include('errors.php'); ?>
+            <?php include('errors.php'); ?>
             <div class="form-group">
                 <h4>Product's Categories</h4>
                 <div class="row">
@@ -113,7 +113,7 @@
                 </div>
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
                 <h4 for="productname">Product Name</h4>
                 <input type="text" class="form-control" id="productname" name="productname" placeholder="Enter your product name">
             </div>
