@@ -21,6 +21,7 @@
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/small-business.js"></script>
     <script src="vendor/bootstrap/js/jquery.isotope.min.js"></script>
+    <script src="strict.js"></script>
 </head>
 
 <body>
@@ -98,7 +99,8 @@
                 <h4>Product's Categories</h4>
                 <div class="row">
                     <div class="col-md-4">
-                        <select class="radio-inline" name="productcategories">
+                        <select class="radio-inline" name="productcategories" id="selectedcate">
+                            <option value="select">Please Select Product's Category</option>
                             <option value="Clothes & Accessories">Clothes & Accessories</option>
                             <option value="Jewellery">Jewellery</option>
                             <option value="CraftSupplies">Craft Supplies</option>
@@ -130,11 +132,13 @@
 
             <div class="form-group">
                 <h4 for="productimage">Product image</h4>
-                <input type="file" name="image" >
+                <input type="file" id="image" name="image" >
 
             </div>
 
             <button type="submit" name="upload" class="btn btn-primary" id="uploadproduct">Upload</button>
+
+            <button type="reset" name="reset" class="btn btn-danger" id="resetproduct">Reset  </button>
         </form>
     </div>
 
