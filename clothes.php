@@ -26,6 +26,7 @@ include("server.php");
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/small-business.js"></script>
     <script src="vendor/bootstrap/js/jquery.isotope.min.js"></script>
+
 </head>
 
 <body>
@@ -103,9 +104,11 @@ include("server.php");
         <!-- Select row of data repeat from here e.g. SELECT * FROM tblProduct -->
 
         <div class="row jumbotron">
-            <div class="row">
+            <div class="row" id="row">
                 <div class="col-md-3 img-thumbnail">
+
                     <img src="images/skirt.jpg" class="img-responsive" style="margin: auto; display: block">
+
                 </div>
 
                 <!--description-->

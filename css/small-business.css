@@ -86,6 +86,13 @@ body {
     transform: scale(1.2);
 }
 
+
+/*
+.row img:hover{
+    transform:scale(1.4);
+}
+*/
+
 /*image transition style in the card box*/
 .image {
   opacity: 1;
