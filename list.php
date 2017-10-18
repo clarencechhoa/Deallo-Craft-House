@@ -27,7 +27,7 @@
 
 
 
-<!-- Navigation bar -->
+    <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
         <a class="navbar-brand" href="index.php">Deallo Craft House Ltd.</a>
@@ -62,7 +62,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-                        <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="upload.php">Upload</a>
                 </li>
                 </ul>
@@ -101,80 +101,82 @@
 
             </div>
 
+
             <div id="imageModal">
                 <div class="popup">
 
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            &times;
-                        </button>
+                    <div class="modal-header" style="background: #">
                         <h4>Edit Product Information</h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                            </button>
                     </div>
+                     <br/>
                     <div class="modal-body">
 
                         <form id="image_form" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <h4>Product's Categories</h4>
-                <div class="row">
-                    <div class="col-md-4">
-                        <select class="radio-inline" name="productcategories">
-                            <option value="Clothes & Accessories">Clothes & Accessories</option>
-                            <option value="Jewellery">Jewellery</option>
-                            <option value="CraftSupplies">Craft Supplies</option>
-                            <option value="Bedding & RoomDecoration">Bedding & Room Decoration</option>
-                            <option value="SoftToy">Soft Toys</option>
-                            <option value="VintageArt">Vintage Art</option>
-                            <option value="WeddingAccessories">Wedding Accessories</option>
-                        </select>
+                            <div class="form-group">
+                                <h4>Product's Categories</h4>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="radio-inline" name="productcategories">
+                                            <option value="Clothes & Accessories">Clothes & Accessories</option>
+                                            <option value="Jewellery">Jewellery</option>
+                                            <option value="CraftSupplies">Craft Supplies</option>
+                                            <option value="Bedding & RoomDecoration">Bedding & Room Decoration</option>
+                                            <option value="SoftToy">Soft Toys</option>
+                                            <option value="VintageArt">Vintage Art</option>
+                                            <option value="WeddingAccessories">Wedding Accessories</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
-                    </div>
 
-                </div>
-            </div>
+                            <div class="form-group">
+                                <h4 for="productname">Product Name</h4>
+                                <input type="text" class="form-control" id="productname" name="productname" placeholder="Enter your product name">
+                            </div>
 
-             <div class="form-group">
-                <h4 for="productname">Product Name</h4>
-                <input type="text" class="form-control" id="productname" name="productname" placeholder="Enter your product name">
-            </div>
+                            <div class="form-group">
+                                <h4 for="productprice">Product Price</h4>
+                                <input type="text" class="form-control" id="productprice" name="productprice" placeholder="Enter your product price">
+                            </div>
 
-            <div class="form-group">
-                <h4 for="productprice">Product Price</h4>
-                <input type="text" class="form-control" id="productprice" name="productprice" placeholder="Enter your product price">
-            </div>
+                            <div class="form-group">
+                                <h4 for="productdesc">Product Description</h4>
+                                <input type="text" class="form-control" id="productdesc" name="productdesc" placeholder="Enter your product description">
+                            </div>
 
-            <div class="form-group">
-                <h4 for="productdesc">Product Description</h4>
-                <input type="text" class="form-control" id="productdesc" name="productdesc" placeholder="Enter your product description">
-            </div>
+                            <div class="form-group">
+                                <h4 for="productimage">Product image</h4>
+                                <input type="file" name="image" id="image">
 
-            <div class="form-group">
-                <h4 for="productimage">Product image</h4>
-                <input type="file" name="image" id="image">
+                            </div>
 
-            </div>
-
-                            <input type="hidden" name="action" id="action" value="insert" class="btn btn-primary"  />
+                            <input type="hidden" name="action" id="action" value="insert" class="btn btn-primary" />
                             <input type="hidden" name="image_id" id="image_id" class="btn btn-primary" />
                             <input type="submit" name="insert" id="insert" value="Submit" class="btn btn-primary" />
                         </form>
                     </div>
                 </div>
 
+
             </div>
 
             <script>
-                $(document).ready(function(){
+                $(document).ready(function() {
                     fetch_data();
 
-                    function fetch_data()
-                    {
+                    function fetch_data() {
                         var action = "fetch";
                         $.ajax({
-                            url:"server.php",
-                            method:"POST",
-                            data:{action:action},
-                            success:function(data)
-                            {
+                            url: "server.php",
+                            method: "POST",
+                            data: {
+                                action: action
+                            },
+                            success: function(data) {
                                 $('#image_data').html(data)
                             }
                         })
@@ -182,34 +184,36 @@
 
 
                     //pop out the edit
-                    $(document).on('click', '.edit', function(){
+                    $(document).on('click', '.edit', function() {
                         $('#image_id').val($(this).attr("id"));
                         $('#action').val("edit");
-                      $(".popup").fadeIn('slow');
+                        $(".popup").fadeIn('slow');
                     });
 
                     //hide the edit
-                    $(".close").on('click', function(){
+                    $(".close").on('click', function() {
                         $(".popup").fadeOut('slow');
                     });
 
                     //delete product
-                    $(document).on('click','.delete', function(){
-                         var image_id = $(this).attr("id");
+                    $(document).on('click', '.delete', function() {
+                        var image_id = $(this).attr("id");
                         var action = "delete";
 
                         $.ajax({
-                            url:"server.php",
-                            method:"POST",
-                            data:{image_id:image_id, action:action},
-                            success:function(data){
+                            url: "server.php",
+                            method: "POST",
+                            data: {
+                                image_id: image_id,
+                                action: action
+                            },
+                            success: function(data) {
                                 fetch_data();
                             }
                         })
                     });
 
                 });
-
 
             </script>
 
@@ -238,7 +242,7 @@
         </div>
     </footer>
 
-        <!-- Bootstrap core JavaScript -->
+    <!-- Bootstrap core JavaScript -->
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
