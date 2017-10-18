@@ -87,11 +87,9 @@ body {
 }
 
 
-/*
-.row img:hover{
-    transform:scale(1.4);
+#zoom img:hover{
+    transform:scale(2.0);
 }
-*/
 
 /*image transition style in the card box*/
 .image {

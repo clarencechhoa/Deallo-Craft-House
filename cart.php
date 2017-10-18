@@ -1,3 +1,9 @@
+<?php
+
+
+include("server.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,16 +86,51 @@
         </a>
     </nav>
 
-        <div class="card text-white bg-secondary my-4 text-center">
-            <div class="card-body">
-                <p class="text-white m-0 lead">Your Shopping Cart</p>
-            </div>
-        </div>
-     <div class="col-md-16 mb-16">
-        <div class="skirt text-center">
-            <img src="images/skirt.jpg">
-        </div>
 
+     <div class="col-md-16 mb-16">
+
+            <div id="addtocart1">
+
+            </div>
+         <script>
+         $(document).ready(function(){
+
+                                    fetch_data();
+                                    function fetch_data()
+                                    {
+                                        var action = "displayCart";
+                                        $.ajax({
+                                            url:"server.php",
+                                            method:"POST",
+                                            data:{action:action},
+                                            success:function(data)
+                                            {
+                                                $('#addtocart1').html(data)
+                                            }
+                                        })
+                                    }
+
+
+              //delete product
+                    $(document).on('click', '.delete1', function() {
+                        var image_id = $(this).attr("id");
+                        var action = "delete1";
+
+                        $.ajax({
+                            url: "server.php",
+                            method: "POST",
+                            data: {
+                                image_id: image_id,
+                                action: action
+                            },
+                            success: function(data) {
+                                fetch_data();
+                            }
+                        })
+                    });
+
+             });
+         </script>
             <div class="add-to-cart text-center">
                         <a href="cart.php" class="btn btn-primary">Checkout</a>
             </div>
