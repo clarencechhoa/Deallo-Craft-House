@@ -154,7 +154,7 @@ if(isset($_POST['action'])){
 
             $output2 = '
 
-            <div class="col-md-3 img-thumbnail">
+            <div class="col-md-3 img-thumbnail" id="zoom">
              <img src="data:image/jpeg;base64, '.base64_encode($row['image']).'" width="100"/>
             </div>
                 <div class="col-md-9" >
