@@ -34,6 +34,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="container">
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <span class="">
@@ -43,10 +44,11 @@
                                 <span class="sr-only">(current)</span>
                 </a>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Clothes & Accessories</a></li>
+                        <li><a class="dropdown-item" href="clothes.php">Clothes & Accessories</a></li>
                         <li><a class="dropdown-item" href="#">Jewelleries</a></li>
                         <li><a class="dropdown-item" href="#">Craft Supplies</a></li>
                         <li><a class="dropdown-item" href="#">Bedding & Room Decorations</a></li>
@@ -55,18 +57,36 @@
                         <li><a class="dropdown-item" href="#">Wedding Accessories</a></li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-                 <li class="nav-item">
+
+            <?php if(isset($_SESSION['seller'])): ?>
+
+                <!--check if it is seller provide this link php *Stephen-->
+                <li class="nav-item">
                     <a class="nav-link" href="upload.php">Upload</a>
                 </li>
+            <?php else: ?>
+
+            <?php endif; ?>
+
                 </ul>
                 </span>
             </div>
+
+            <!-- Search bar and button -->
+            <form class="form-inline search">
+                <input class="form-control" type="text" placeholder="Search">
+            </form>
+            <button class="btn btn-outline-success pull-right searchbtn" type="submit">Search</button>
+
+        </div>
 
             <!-- Search bar -->
             <form class="form-inline">
@@ -74,19 +94,30 @@
             </form>
             <button class="btn btn-outline-success pull-right" type="submit">Search</button>
 
-        </div>
 
-        <!-- Popover -->
-        <a href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Login" data-content='<form>
-                            <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Enter email" maxlength="40" id="emailborder" size="25" style="margin-bottom: 10px;"/>
-                            <input type="password" class="form-control" placeholder="Password" maxlength="12" id="passborder" size="25" style="margin-bottom: 10px;"/>
-                            <button type="button" class="btn btn-success btn-xs" id="loginpopbtn"><a href="">Log In</a></button>
-                            <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
-        <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
-        </a>
+       <!-- using php changing interface before log in and after -->
+        <?php if (isset($_SESSION['success'])): ?>
+        <!-- Popover for success log in -->
+        <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Welcome <?php echo $_SESSION['success'];?>" data-content='<p id="signup"><a href="index.php?logout="1"""><em>Log out</em></a></p>'>
+            </data-container>
+
+
+            <?php else: ?>
+
+            <!-- Popover for havent login-->
+            <data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Login" data-content='<form method="post" action="login.php">
+                                <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Enter email" maxlength="40" id="emailborder" size="25" style="margin-bottom: 10px;" value="<?php if(isset($_COOKIE["saveemail"])) { echo $_COOKIE["saveemail"]; } ?>"/>
+                                <input type="password" name="password" class="form-control" placeholder="Password" maxlength="12" id="passborder" size="25" style="margin-bottom: 10px;" value="<?php if(isset($_COOKIE["savepassword"])) { echo $_COOKIE["savepassword"]; } ?>"/>
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="remember" <?php if(isset($_COOKIE["saveemail"])) {?> checked <?php } ?> >Remember Password</label>
+                                <br><br><button type="submit" class="btn btn-success btn-xs" id="loginpopbtn" name="login">Log In</button>
+                                <p id="signup"><a href="register.php" target="_blank"><em>Sign Up</em></a></p></form>'>
+                </data-container>
+                <?php endif; ?>
+
+                <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
     </nav>
-
 
     <h2 style="color: black; font-weight: bold; text-align: center; margin-top: 20px; margin-bottom: 20px">Upload Product</h2>
 
