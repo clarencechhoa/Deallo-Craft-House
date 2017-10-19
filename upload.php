@@ -88,13 +88,6 @@
 
         </div>
 
-            <!-- Search bar -->
-            <form class="form-inline">
-                <input class="form-control" type="text" placeholder="Search">
-            </form>
-            <button class="btn btn-outline-success pull-right" type="submit">Search</button>
-
-
        <!-- using php changing interface before log in and after -->
         <?php if (isset($_SESSION['success'])): ?>
         <!-- Popover for success log in -->

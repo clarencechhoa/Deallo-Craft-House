@@ -189,11 +189,18 @@ if(isset($_POST['action'])){
 
     }
 
+
+     $limit=0;
     if($_POST['action'] == "displayCart"){
+
+
 
 
          $query = "SELECT * FROM carts ORDER BY cartID ASC";
         $result = mysqli_query($db,$query);
+
+
+
 
         while($row = mysqli_fetch_array($result)){
 
@@ -223,11 +230,17 @@ if(isset($_POST['action'])){
                                 </td>
                             </tr>
                         ';
+//                    $limit=$limit+1;
                 }
                 $output .= '</table>';
                 echo $output;
+//
+//            echo"$limit";
 
-    }
+        }
+
+
+
     }
     if($_POST['action'] == "delete1"){
         $query= "DELETE FROM carts WHERE cartID ='".$_POST['image_id']."' ";
