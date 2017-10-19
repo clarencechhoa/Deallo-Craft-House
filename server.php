@@ -150,39 +150,53 @@ if(isset($_POST['action'])){
     if($_POST['action'] == "fetchDisplay"){
         $query = "SELECT * FROM products ORDER BY productID ASC";
         $result = mysqli_query($db,$query);
-        while($row = mysqli_fetch_array($result)){
 
-            $output2 = '
 
-            <div class="col-md-3 img-thumbnail" id="zoom">
-             <img src="data:image/jpeg;base64, '.base64_encode($row['image']).'" width="100"/>
-            </div>
-                <div class="col-md-9" >
-                    <h3>Name</h3>
-                    <p>'.$row['p_name'].'</p>
 
-                    <h3>Price</h3>
-                    <p>'.$row['p_price'].'</p>
 
-                    <h3>Description</h3>
-                    <p>'.$row['p_desc'].'</p>
+            while($row = mysqli_fetch_array($result)){
 
-                    <button type="button" class="addtocart" id="'.$row["productID"].'">Add To Cart</button>
+                $output2 = '
+
+                <div class="col-md-3 img-thumbnail" id="zoom">
+                 <img src="data:image/jpeg;base64, '.base64_encode($row['image']).'" width="100"/>
                 </div>
+                    <div class="col-md-9" >
+                        <h3>Name</h3>
+                        <p>'.$row['p_name'].'</p>
 
-            ';
-          echo $output2;
-        }
-    }
+                        <h3>Price</h3>
+                        <p>'.$row['p_price'].'</p>
+
+                        <h3>Description</h3>
+                        <p>'.$row['p_desc'].'</p>
+
+                        <button type="button" class="addtocart" id="'.$row["productID"].'">Add To Cart</button>
+                    </div>
+
+                ';
+
+              echo $output2;
+
+            }
+          }
+
 
     if($_POST['action'] == "addtocart"){
+
          $sql ="INSERT INTO carts(p_categories, p_name, p_price, p_desc, image) SELECT p_categories, p_name, p_price, p_desc,image FROM products WHERE productID ='".$_POST['image_id']."'";
                  mysqli_query($db, $sql);
+
     }
+
     if($_POST['action'] == "displayCart"){
+
+
          $query = "SELECT * FROM carts ORDER BY cartID ASC";
         $result = mysqli_query($db,$query);
+
         while($row = mysqli_fetch_array($result)){
+
         $result = mysqli_query($db,$query);
                 $output = '
                 <table>
@@ -212,11 +226,13 @@ if(isset($_POST['action'])){
                 }
                 $output .= '</table>';
                 echo $output;
-        }
+
+    }
     }
     if($_POST['action'] == "delete1"){
         $query= "DELETE FROM carts WHERE cartID ='".$_POST['image_id']."' ";
         mysqli_query($db,$query);
+
     }
 }
 
