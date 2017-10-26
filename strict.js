@@ -21,7 +21,7 @@ function validate()
             if(product_name=="")
             {
                      errMsg= errMsg + "\nPlease Enter Product Name";
-            }else if(!product_name.match(/^[a-zA-Z]+$/))
+            }else if(!product_name.match(/^[a-zA-Z\s]+$/)
             {
                      errMsg= errMsg + "\nProduct Name only contains alpha characters";
             }
@@ -46,9 +46,6 @@ function validate()
             if(product_desc=="")
             {
                      errMsg= errMsg + "\nPlease Enter Product Description";
-            }else if(!product_desc.match(/^([a-zA-Z]* ?[a-zA-Z]*)*$/))
-            {
-                     errMsg= errMsg + "\nProduct Description only contains alpha characters";
             }
 
 

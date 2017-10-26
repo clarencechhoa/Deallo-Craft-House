@@ -119,49 +119,190 @@ include("server.php");
     </nav>
 
 
-    <div class="container">
-        <h2 style="color: black; font-weight: bold; margin-top: 20px; margin-bottom: 20px">Clothes</h2>
-    </div>
+    <?php
+        if(isset($_POST['testing'])){
+            $a = $_POST['test'];
+
+            $query = "SELECT * FROM products WHERE productID = $a ";
+            $result = mysqli_query($db,$query);
+
+            while($row = mysqli_fetch_array($result)){
 
 
+                $output2 = '
 
-        <!-- Select row of data repeat from here e.g. SELECT * FROM tblProduct -->
-            <div class="row" id="product111">
+<div class="container">
+   <div class="row jumbotron" style="width:100%;">
+     <div class="row col-md-12" >
+        <div class="container" style="margin-bottom:15px;">
+
+                <div id="zoom" style="float:left;  margin-left:7%; margin-top:5%;" >
+                 <img src="data:image/jpeg;base64, '.base64_encode($row['image']).'" width="100"/>
+                </div>
+
+                <div class="col-md-9" style="float:left; margin-left:5%; ">
+                    <h3>Name</h3>
+                    <p>'.$row['p_name'].'</p>
+
+                    <h3>Price</h3>
+                    <p>'.$row['p_price'].'</p>
+
+                    <h3>Description</h3>
+                    <p>'.$row['p_desc'].'</p>
 
 
+                </div>
             </div>
+        </div>
+
+   <div class="col-md-12" style="height:230px; overflow-y: scroll; ">
+
+                            <div class="card" style="margin-top:15px;">
+                                <div class="card-block container">
+                                    <blockquote class="card-blockquote">
+                                        <div id="'.$row["productID"].'" class="commentdata">
 
 
 
-                            <script>
-                                $(document).ready(function(){
+                                        </div>
 
-                                    fetch_data();
-                                    function fetch_data()
-                                    {
-                                        var action = "fetchDisplay";
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+
+                <div align="center">
+                    <button type="button" class="addtocart" id="'.$row["productID"].'">Add to Cart</button>
+
+
+                    <form method="POST" action="comment.php">
+                    <input type="hidden" id="'.$row["productID"].'" class="lr" name="leave" value="'.$row["productID"].'">
+                    <button type="submit" class="addtocart" id="'.$row["productID"].'" name="leavereview">Leave a review</button>
+                    </form>
+                </div>
+  </div>
+</div>
+                ';
+
+              echo $output2;
+
+            }
+
+        }
+
+    if(isset($_POST['commentSubmit'])){
+            $b = $_POST['back1'];
+
+            $query = "SELECT * FROM products WHERE productID = $b ";
+            $result = mysqli_query($db,$query);
+
+            while($row = mysqli_fetch_array($result)){
+
+
+                $output3 = '
+
+<div class="container">
+   <div class="row jumbotron" style="width:100%;">
+     <div class="row col-md-12" >
+        <div class="container" style="margin-bottom:15px;">
+
+                <div id="zoom" style="float:left;  margin-left:7%; margin-top:5%;" >
+                 <img src="data:image/jpeg;base64, '.base64_encode($row['image']).'" width="100"/>
+                </div>
+
+                <div class="col-md-9" style="float:left; margin-left:5%; ">
+                    <h3>Name</h3>
+                    <p>'.$row['p_name'].'</p>
+
+                    <h3>Price</h3>
+                    <p>'.$row['p_price'].'</p>
+
+                    <h3>Description</h3>
+                    <p>'.$row['p_desc'].'</p>
+
+
+                </div>
+            </div>
+        </div>
+
+   <div class="col-md-12" style="height:230px; overflow-y: scroll; ">
+
+                            <div class="card" style="margin-top:15px;">
+                                <div class="card-block container">
+                                    <blockquote class="card-blockquote">
+                                        <div id="'.$row["productID"].'" class="commentdata">
+
+
+
+                                        </div>
+
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+
+                <div align="center">
+                    <button type="button" class="addtocart" id="'.$row["productID"].'">Add to Cart</button>
+
+
+                    <form method="POST" action="comment.php">
+                    <input type="hidden" id="'.$row["productID"].'" class="lr" name="leave" value="'.$row["productID"].'">
+                    <button type="submit" class="addtocart" id="'.$row["productID"].'" name="leavereview">Leave a review</button>
+                    </form>
+                </div>
+  </div>
+</div>
+                ';
+
+              echo $output3;
+
+            }
+
+        }
+    ?>
+    <script>
+                    $(document).ready(function(){
+
+                                 $(document).on('click','.addtocart', function(){
+                                   var image_id = $(this).attr("id");
+                                    var action = "addtocart";
+
+                                    $.ajax({
+                                        url: "server.php",
+                                        method: "POST",
+                                        data:{
+                                            image_id: image_id,
+                                             action:action
+                                             },
+
+                                    })
+                                });
+
+
+
+
+
+                        fetch_data2();
+                                    function fetch_data2(){
+                                        var action="displaycomment1";
+                                        var cid = $('.lr').attr("id");
+
                                         $.ajax({
                                             url:"server.php",
                                             method:"POST",
-                                            data:{action:action},
+                                            data:{
+                                                cid:cid,
+                                                action:action},
                                             success:function(data)
                                             {
-                                                $('#product111').html(data)
+                                                $('.commentdata').html(data)
                                             }
                                         })
-                                    }
+                                }
 
 
-
-
-
-
-                                });
-                            </script>
-
-
-
-
+                          });
+    </script>
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -193,7 +334,5 @@ include("server.php");
 </body>
 
 
-
-
-
 </html>
+
