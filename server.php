@@ -35,11 +35,12 @@ $errors = array();
     )";
 
  $queryCustomerTB[] = "CREATE TABLE IF NOT EXISTS commentsection(
-        cid INT(11) NOT NULL AUTO_INCREMENT,
+        cID INT(11) NOT NULL AUTO_INCREMENT,
         date DATETIME NOT NULL,
         message TEXT NOT NULL,
-        PRIMARY KEY (cid)
+        productID INT(11) NOT NULL,
 
+        PRIMARY KEY (cID)
     )";
 
 $queryCustomerTB[] = "CREATE TABLE IF NOT EXISTS carts(
@@ -156,30 +157,62 @@ if(isset($_POST['action'])){
 
             while($row = mysqli_fetch_array($result)){
 
-                $output2 = '
 
-                <div class="col-md-3 img-thumbnail" id="zoom">
+                $output2 = '
+<div class="container">
+   <div class="row jumbotron" style="width:100%;">
+     <div class="row col-md-12" >
+        <div class="container" style="margin-bottom:15px;">
+
+                <div id="zoom" style="float:left;  margin-left:7%; margin-top:5%;" >
                  <img src="data:image/jpeg;base64, '.base64_encode($row['image']).'" width="100"/>
                 </div>
-                    <div class="col-md-9" >
-                        <h3>Name</h3>
-                        <p>'.$row['p_name'].'</p>
 
-                        <h3>Price</h3>
-                        <p>'.$row['p_price'].'</p>
+                <div class="col-md-9" style="float:left; margin-left:5%; ">
+                    <h3>Name</h3>
+                    <p>'.$row['p_name'].'</p>
 
-                        <h3>Description</h3>
-                        <p>'.$row['p_desc'].'</p>
+                    <h3>Price</h3>
+                    <p>'.$row['p_price'].'</p>
 
-                        <button type="button" class="addtocart" id="'.$row["productID"].'">Add To Cart</button>
-                    </div>
+                    <h3>Description</h3>
+                    <p>'.$row['p_desc'].'</p>
 
+                    <form action="detail.php" method="POST">
+
+                        <input name="test" type="hidden" value="'.$row["productID"].'">
+
+                    <button type="submit" class="viewmore" id="'.$row["productID"].'" name="testing">View More</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                 ';
 
               echo $output2;
 
             }
           }
+
+
+
+    //display comment
+    if($_POST['action'] == "displaycomment1"){
+
+        $sql ="SELECT * FROM commentsection WHERE productID ='".$_POST['cid']."' ";
+         $result = mysqli_query($db, $sql);
+
+        while($row = mysqli_fetch_array($result)){
+
+          echo  '<p>';
+                echo $row['date']. ": ";
+                echo $row['message'];
+        echo     '</p>';
+        }
+    }
 
 
     if($_POST['action'] == "addtocart"){
@@ -192,7 +225,6 @@ if(isset($_POST['action'])){
 
      $limit=0;
     if($_POST['action'] == "displayCart"){
-
 
 
 
@@ -263,33 +295,6 @@ if(isset($_POST['register'])){
     $query = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($db, $query);
 
-    //validation for form
-    if (empty($f_name)){
-        array_push($errors, "Firstname is required");
-    }
-
-    if (empty($l_name)){
-        array_push($errors, "Lastname is required");
-    }
-
-    if (empty($email)){
-        array_push($errors, "Email is required");
-    }
-    else if (mysqli_num_rows($result) == 1){
-        array_push($errors, "This email has used");
-    }
-
-    if (empty($password_1)){
-        array_push($errors, "Password is required");
-    }
-
-    if ($password_1 != $password_2){
-        array_push($errors, "The two passwords do not match");
-    }
-
-    if (empty($role)){
-        array_push($errors, "Role is required");
-    }
 
     //if there are no errors, save data to database
     if (count($errors) == 0){
@@ -309,13 +314,7 @@ if (isset($_POST['login'])){
     $email = mysqli_real_escape_string($db,$_POST['email']);
     $password = mysqli_real_escape_string($db,$_POST['password']);
 
-    if (empty($email)){
-        array_push($errors, "Email is required");
-    }
 
-    if (empty($password)){
-        array_push($errors, "Password is required");
-    }
 
     if (count($errors) == 0){
         //validate user login with correct email and password
@@ -377,31 +376,13 @@ if (isset($_GET['logout'])){
     header('location: index.php');
 }
 
-
-//upload comment data
 if(isset($_POST['commentSubmit'])){
-    $message=mysqli_real_escape_string($db,$_POST['message']);
-    $sql ="INSERT INTO commentsection(date,message) VALUES (NOW(),'$message')";
-      mysqli_query($db, $sql);
+
+          $message=mysqli_real_escape_string($db,$_POST['message']);
+        $productID = mysqli_real_escape_string($db,$_POST['pID']);
+        $sql ="INSERT INTO commentsection(date,message,productID) VALUES (NOW(),'$message','$productID')";
+        mysqli_query($db, $sql);
 }
-
-//display comment data
-if(isset($_POST['action2'])){
-    if($_POST['action2'] == "display"){
-
-        $sql ="SELECT * FROM commentsection";
-         $result = mysqli_query($db, $sql);
-
-        while($row = mysqli_fetch_array($result)){
-
-          echo  '<p>';
-                echo $row['date']. ": ";
-                echo $row['message'];
-        echo     '</p>';
-        }
-    }
-}
-
 
 
 

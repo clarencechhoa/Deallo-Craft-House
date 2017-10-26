@@ -118,52 +118,56 @@ include("server.php");
                 <img src="images/login_user.png" alt="user_login" id="login" width="30px" />
     </nav>
 
+    <?php
+        if(isset($_POST['leavereview'])){
+            $a = $_POST['leave'];
 
-    <div class="container">
-        <h2 style="color: black; font-weight: bold; margin-top: 20px; margin-bottom: 20px">Clothes</h2>
+            $query = "SELECT * FROM products WHERE productID = $a ";
+            $result = mysqli_query($db,$query);
+
+            while($row = mysqli_fetch_array($result)){
+
+
+                $output2 = '
+
+ <div class="container" >
+   <div class="row jumbotron" style="width:100%;">
+                        <div class="row" id="post-review-box">
+                            <div>
+                                 <form accept-charset="UTF-8" action="detail.php" method="post">
+
+                                    <input type="hidden" name="date" value="'.date("Y-m-d H:i:s").'">
+
+
+                                    <textarea class="form-control animated" cols="100" id="new-review" name="message" placeholder="Enter your review here..." rows="10" style="-webkit-transition: height 0.2s; -moz-transition: height 0.2s; transition: height 0.2s;"></textarea>
+
+
+                                    <input name="pID" value="'.$row["productID"].'" type="hidden">
+
+                                     <input type="hidden" id="'.$row["productID"].'" class="lr" name="back1" value="'.$row["productID"].'">
+
+        <button type="submit" name="commentSubmit" class="commentSubmit" id="'.$row["productID"].'">Save</button>
+
+
+                                </form>
+                            </div>
+                        </div>
+        </div>
     </div>
 
+                ';
 
+              echo $output2;
 
-        <!-- Select row of data repeat from here e.g. SELECT * FROM tblProduct -->
-            <div class="row" id="product111">
+            }
 
+        }
 
-            </div>
-
-
-
-                            <script>
-                                $(document).ready(function(){
-
-                                    fetch_data();
-                                    function fetch_data()
-                                    {
-                                        var action = "fetchDisplay";
-                                        $.ajax({
-                                            url:"server.php",
-                                            method:"POST",
-                                            data:{action:action},
-                                            success:function(data)
-                                            {
-                                                $('#product111').html(data)
-                                            }
-                                        })
-                                    }
+    ?>
 
 
 
-
-
-
-                                });
-                            </script>
-
-
-
-
-
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="row social">
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -191,9 +195,5 @@ include("server.php");
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
-
-
-
-
 
 </html>
